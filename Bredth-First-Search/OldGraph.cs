@@ -1,4 +1,4 @@
-public class Graph
+﻿public class OldGraph
 {
     // No. of vertices / nodes   
     private readonly int _nodes;
@@ -6,7 +6,7 @@ public class Graph
     // Adjacency Lists // I tried with List and works just fine
     private readonly LinkedList<int>[] _adjacencyList;
 
-    public Graph(int nodes)
+    public OldGraph(int nodes)
     {
         _adjacencyList = new LinkedList<int>[nodes];
         
@@ -38,16 +38,16 @@ public class Graph
 
         while (queue.Any())
         {
-            // Dequeue a node/vertex from queue and print it
-            startNode = queue.First();
+            // Dequeue a node/vertex from queue
+            var nextNode = queue.First();
             
-            // save the visited node
-            breadthFirstSearchTraversePath = $"{breadthFirstSearchTraversePath}{startNode}";
+            // save the visited node (to see traversal, and used in tests)
+            breadthFirstSearchTraversePath = $"{breadthFirstSearchTraversePath}{nextNode}";
             
             queue.Dequeue();
 
             // Get all adjacent vertices of the dequeued node/vertex
-            var adjacencyList = _adjacencyList[startNode];
+            var adjacencyList = _adjacencyList[nextNode];
 
             // If an adjacent has not been visited, then mark it visited and enqueue it
             foreach (var adjacent in adjacencyList.Where(adjacent => !visitedNodes[adjacent]))
